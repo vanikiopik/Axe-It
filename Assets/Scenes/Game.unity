@@ -311,9 +311,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 692814799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06eb97a670599f3459695d1fa0662732, type: 3}
+  m_Script: {fileID: 11500000, guid: c624ff153d062364db127e621719f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SliderController: {fileID: 1635543425}
+  ScoreText: {fileID: 990814329}
 --- !u!1 &804212843
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75000006}
-  m_AnchoredPosition: {x: 111.61235, y: 0}
-  m_SizeDelta: {x: -264.4448, y: 0}
+  m_AnchoredPosition: {x: 88, y: 0}
+  m_SizeDelta: {x: -300.7387, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &990814325
 GameObject:
@@ -464,6 +466,7 @@ GameObject:
   - component: {fileID: 990814326}
   - component: {fileID: 990814328}
   - component: {fileID: 990814327}
+  - component: {fileID: 990814329}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -504,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -513,7 +516,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 50
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
@@ -533,6 +536,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990814325}
   m_CullTransparentMesh: 1
+--- !u!114 &990814329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990814325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b2fe7b37cf3ae4683043a3339018b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1005520433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,8 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1029940ba6b0a674d9c1d59e26ee2acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 1635543425}
-  _scoreText: {fileID: 990814327}
   _woods:
   - {fileID: 3469287838265700774}
   - {fileID: 1119947742}
@@ -1398,7 +1411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4554426607304453633}
   m_LocalRotation: {x: -0.7148053, y: -0.042534444, z: 0.051981732, w: 0.6960906}
-  m_LocalPosition: {x: -6.98, y: 1.04, z: -37.21}
+  m_LocalPosition: {x: -6.55, y: 1.1, z: -37.21}
   m_LocalScale: {x: 49.92341, y: 49.923405, z: 100.00001}
   m_ConstrainProportionsScale: 0
   m_Children: []

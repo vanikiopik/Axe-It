@@ -1,13 +1,10 @@
 using IEnumerator = System.Collections.IEnumerator;
+using Random = UnityEngine.Random;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class Axe : MonoBehaviour
 {
-    [SerializeField] private SliderController _slider;
-    [SerializeField] private Text _scoreText;
     [SerializeField] private Wood[] _woods;
     [SerializeField] private float _woodThrowingForce;
 
@@ -20,8 +17,8 @@ public class Axe : MonoBehaviour
         {
             if (!_isAttacking)
             {
-                _slider.enabled = false;
-                StartCoroutine(Attack(_slider.IsHandleOverWinningArea()));
+                GuiHandler.Instance.SliderController.enabled = false;
+                StartCoroutine(Attack(GuiHandler.Instance.SliderController.IsHandleOverWinningArea()));
             }
         }
     }
@@ -39,7 +36,7 @@ public class Axe : MonoBehaviour
 
         if (isWoodAxed)
         {
-            _scoreText.text = $"Score: {++_woodsCount}";
+            GuiHandler.Instance.ScoreText.Set($"Score: {++_woodsCount}");
 
             foreach (var wood in _woods)
                 StartCoroutine(wood.Throw(_woodThrowingForce));
@@ -47,8 +44,9 @@ public class Axe : MonoBehaviour
 
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-50, -yRotation, 0), 0.5f);
         yield return new WaitForSeconds(1.0f);
-
-        _slider.SetToStart();
+        
+        GuiHandler.Instance.SliderController.ResetSlider();
+        GuiHandler.Instance.SliderController.ResetFillArea();
         _isAttacking = false;
     }
 }
