@@ -31,6 +31,8 @@ public class Axe : MonoBehaviour
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-20, yRotation, 0), 0.3f);
         yield return new WaitForSeconds(0.3f);
 
+        if (!isWoodAxed) FindObjectOfType<CameraShake>().Shake();
+        
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(70, 0, 0), 0.2f);
         yield return new WaitForSeconds(0.2f);
 
