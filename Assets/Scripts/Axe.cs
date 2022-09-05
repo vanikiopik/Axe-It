@@ -13,14 +13,10 @@ public class Axe : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!_isAttacking)
-            {
-                GuiHandler.Instance.SliderController.enabled = false;
-                StartCoroutine(Attack(GuiHandler.Instance.SliderController.IsHandleOverWinningArea()));
-            }
-        }
+        if (!Input.GetMouseButtonDown(0) || _isAttacking) return;
+        
+        GuiHandler.Instance.SliderController.enabled = false;
+        StartCoroutine(Attack(GuiHandler.Instance.SliderController.IsHandleOverWinningArea()));
     }
 
     private IEnumerator Attack(bool isWoodAxed)

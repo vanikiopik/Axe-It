@@ -7,6 +7,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private float _sizeDelta;
     [SerializeField] private int _shakingCount;
     [SerializeField] private float _duration;
+    
     public void Shake()
     {
         Vector3 startPosition = transform.position;
@@ -16,5 +17,6 @@ public class CameraShake : MonoBehaviour
             path.Insert(0,  startPosition + new Vector3(_sizeDelta * (i % 2 == 0 ? -1 : 1), 0, 0));
             
         transform.DOPath(path.ToArray(), _duration);
+        Handheld.Vibrate();
     }
 }

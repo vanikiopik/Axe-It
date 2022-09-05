@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sizeDelta: 0.05
-  _shakingCount: 10
+  _shakingCount: 20
   _duration: 0.5
 --- !u!4 &543450652134080006
 Transform:
