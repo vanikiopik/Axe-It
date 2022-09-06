@@ -1,13 +1,10 @@
 using IEnumerator = System.Collections.IEnumerator;
+using Random = UnityEngine.Random;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class Axe : MonoBehaviour
 {
-    [SerializeField] private SliderController _slider;
-    [SerializeField] private Text _scoreText;
     [SerializeField] private Wood[] _woods;
     [SerializeField] private float _woodThrowingForce;
 
@@ -16,14 +13,10 @@ public class Axe : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!_isAttacking)
-            {
-                _slider.enabled = false;
-                StartCoroutine(Attack(_slider.IsHandleOverWinningArea()));
-            }
-        }
+        if (!Input.GetMouseButtonDown(0) || _isAttacking) return;
+        
+        GuiHandler.Instance.SliderController.enabled = false;
+        StartCoroutine(Attack(GuiHandler.Instance.SliderController.IsHandleOverWinningArea()));
     }
 
     private IEnumerator Attack(bool isWoodAxed)
@@ -34,12 +27,14 @@ public class Axe : MonoBehaviour
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-20, yRotation, 0), 0.3f);
         yield return new WaitForSeconds(0.3f);
 
+        if (!isWoodAxed) FindObjectOfType<CameraShake>().Shake();
+        
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(70, 0, 0), 0.2f);
         yield return new WaitForSeconds(0.2f);
 
         if (isWoodAxed)
         {
-            _scoreText.text = $"Score: {++_woodsCount}";
+            GuiHandler.Instance.ScoreText.Set($"Score: {++_woodsCount}");
 
             foreach (var wood in _woods)
                 StartCoroutine(wood.Throw(_woodThrowingForce));
@@ -47,8 +42,9 @@ public class Axe : MonoBehaviour
 
         transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-50, -yRotation, 0), 0.5f);
         yield return new WaitForSeconds(1.0f);
-
-        _slider.SetToStart();
+        
+        GuiHandler.Instance.SliderController.ResetSlider();
+        GuiHandler.Instance.SliderController.ResetFillArea();
         _isAttacking = false;
     }
 }

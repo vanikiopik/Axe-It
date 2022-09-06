@@ -15,11 +15,11 @@ public class Wood : MonoBehaviour
         _startRotation = transform.rotation;
     }
 
-    public IEnumerator Throw(float force)
+    public IEnumerator Throw(float force, float delay = 1.0f)
     {
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(transform.right * force);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(delay);
         
         _rigidbody.isKinematic = true;
         transform.position = _startPosition;
