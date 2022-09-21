@@ -1,7 +1,6 @@
-using GUI.ScoreText;
-using GUI.Slider;
-using GUI.SoundButton;
-using GUI.StartText;
+using GUI.GameHUD;
+using GUI.MainMenuHUD;
+using GUI.MoneyTableHUD;
 using UnityEngine;
 
 namespace GUI
@@ -17,36 +16,18 @@ namespace GUI
         }
 
         #endregion
-
-        [field: SerializeField] public SliderController SliderController { get; set; }
-        [field: SerializeField] public ScoreTextController ScoreTextController { get; set; }
-        [field: SerializeField] public SoundButtonController SoundButtonController { get; set; }
-        [field: SerializeField] public StartTextController StartTextController { get; set; }
+        
+        [field: SerializeField] public MainMenuHudController MainMenuHudController { get; set; }
+        [field: SerializeField] public GameHudController GameHudController { get; set; }
+        [field: SerializeField] public MoneyTableHudController MoneyTableHudController { get; set; }
 
         private void Start()
         {
-            ScoreTextController.Start();
-            SliderController.Start();
-            SoundButtonController.Start();
-            StartTextController.Start();
+            GameHudController.Start();
+            MoneyTableHudController.Start();
+            MainMenuHudController.Start();
         }
 
-        public void OnSoundButtonClick() => SoundButtonController.Switch();
-
-        
-        // ________________________________________________________________________________________________
-        /*public void OnStartButtonClick()
-        {
-            transform.GetChild(1).gameObject.SetActive(false);
-            transform.GetChild(0).gameObject.SetActive(true);
-            FindObjectOfType<Axe>().Foo();
-        }
-
-        public void OnCancelButtonClick()
-        {
-            transform.GetChild(1).gameObject.SetActive(true);
-            transform.GetChild(0).gameObject.SetActive(false);
-            FindObjectOfType<Axe>().Hide();
-        }*/
+        public void OnSoundButtonClick() => MainMenuHudController.SoundButtonSwitch();
     }
 }

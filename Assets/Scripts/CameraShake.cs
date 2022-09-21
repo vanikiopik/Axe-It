@@ -13,8 +13,8 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         Vector3 startPosition = transform.position;
-        List<Vector3> path = new List<Vector3>(_shakingCount + 1) { startPosition };
-
+        var path = new List<Vector3>(_shakingCount + 1) { startPosition };
+        
         for (int i = 0; i < _shakingCount; ++i)
             path.Insert(0, startPosition + new Vector3(_sizeDelta * (i % 2 == 0 ? -1 : 1), 0, 0));
 
