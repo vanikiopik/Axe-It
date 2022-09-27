@@ -1,55 +1,69 @@
 using IEnumerator = System.Collections.IEnumerator;
 using Random = UnityEngine.Random;
-using DG.Tweening;
 using GUI;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Axe : MonoBehaviour
 {
-    [SerializeField] private Wood[] _woods;
     [SerializeField] private float _woodThrowingForce;
 
     private CameraShake _cameraShake;
+    private Animator _animator;
+    private GuiHandler _gui;
+    private Wood[] _woods;
     private bool _isAttacking;
-    private int _woodsCount;
+    private int _woodsCount; // temp
 
-    private void Start() => _cameraShake = FindObjectOfType<CameraShake>();
+    private void Start()
+    {
+        _gui = GuiHandler.Instance;
+        _woods = FindObjectsOfType<Wood>();
+        _cameraShake = FindObjectOfType<CameraShake>();
+        _animator = GetComponent<Animator>();
+    }
 
     public void TryAttack()
     {
         if (_isAttacking) return;
         
-        GuiHandler.Instance.GameHudController.Engine.StopSliderMove();
-        StartCoroutine(Attack(
-            GuiHandler.Instance.GameHudController.Engine.IsHandleOverWinningArea()));
+        _gui.GameViewController.Engine.StopSliderMove();
+        bool isAxed = _gui.GameViewController.Engine.IsHandleOverWinningArea();
+        StartCoroutine(isAxed ? HitAttack() : MissAttack());
     }
 
-    private IEnumerator Attack(bool isWoodAxed)
+    private IEnumerator HitAttack()
     {
         _isAttacking = true;
 
-        int yRotation = isWoodAxed ? 0 : Random.Range(0, 2) == 0 ? 15 : -15;
-        transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-20, yRotation, 0), 0.3f);
-        yield return new WaitForSeconds(0.3f);
+        _animator.SetTrigger("HitAttack");
+        yield return new WaitForSeconds(0.5f);
 
-        if (!isWoodAxed) _cameraShake.Shake();
+        _gui.GameViewController.SetScoreText(++_woodsCount); // temp
+        _gui.PauseMenuViewController.SetScoreInfoText(_woodsCount, 9999); // temp
 
-        transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(70, 0, 0), 0.2f);
-        yield return new WaitForSeconds(0.2f);
-
-        if (isWoodAxed)
-        {
-            GuiHandler.Instance.GameHudController.SetScoreText($"Score: {++_woodsCount}");
-
-            foreach (var wood in _woods)
-                StartCoroutine(wood.Throw(_woodThrowingForce, 1.0f));
-        }
-
-        transform.DOLocalRotate(transform.rotation.eulerAngles + new Vector3(-50, -yRotation, 0), 0.5f);
+        foreach (var wood in _woods) 
+            StartCoroutine(wood.Throw(_woodThrowingForce, 1.0f));
+        
         yield return new WaitForSeconds(1.0f);
 
-        GuiHandler.Instance.GameHudController.Engine.ResetSlider();
-        GuiHandler.Instance.GameHudController.Engine.ResetFillArea();
+        _gui.GameViewController.Engine.ResetSliderAndArea();
+        _gui.GameViewController.Engine.IncreaseSliderSpeed();
+        _isAttacking = false;
+    }
+
+    private IEnumerator MissAttack()
+    {
+        _isAttacking = true;
+        
+        _animator.SetTrigger((Random.Range(0, 2) == 0 ? "Left" : "Right") + "MissAttack");
+        yield return new WaitForSeconds(0.3f);
+        
+        _cameraShake.Shake();
+        yield return new WaitForSeconds(0.7f);
+
+        _gui.GameViewController.Engine.ResetSliderAndArea();
+        _gui.GameOverViewController.OnGameOverMenuEnable();
         _isAttacking = false;
     }
 }

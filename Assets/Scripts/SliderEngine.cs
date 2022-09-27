@@ -1,57 +1,56 @@
+using GUI.GameHUD;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+[System.Serializable]
 public class SliderEngine
 {
     private enum MoveTo { Left = -1, None = 0, Right = 1 }
-    private MoveTo _direction = MoveTo.Right;
-
-    private float _sliderSpeed;
-    private Slider _slider;
-    private RectTransform _fillArea;
-    private RectTransform _handle;
-
-    public SliderEngine(float sliderSpeed, Slider slider, RectTransform fillArea, RectTransform handle)
-    {
-        _sliderSpeed = sliderSpeed;
-        _slider = slider;
-        _fillArea = fillArea;
-        _handle = handle;
-    }
+    private MoveTo _direction = MoveTo.None;
     
+    [SerializeField] private AnimationCurve _speedIncreaseCurve;
+    [SerializeField] private float _speedIncreaseValue;
+    
+    private GameView _view;
+    private float _sliderSpeed;
+    private float _iteration;
+
+    public void Start(GameView view)
+    {
+        _view = view;
+        _sliderSpeed = _speedIncreaseCurve[0].value;
+    }
+
     public void Update()
     {
-        if (_slider.value <= _slider.minValue) _direction = MoveTo.Right;
-        if (_slider.value >= _slider.maxValue) _direction = MoveTo.Left;
-
-        _slider.value += _sliderSpeed * Time.deltaTime * (int)_direction;
-    }
+        _view.Slider.value += _sliderSpeed * Time.deltaTime * (int) _direction;
         
+        if (_view.Slider.value <= _view.Slider.minValue) _direction = MoveTo.Right;
+        if (_view.Slider.value >= _view.Slider.maxValue) _direction = MoveTo.Left;
+    }
+
     public void StopSliderMove() => _direction = MoveTo.None;
 
-    public void ResetSlider()
-    {
-        _slider.value = _slider.minValue;
-        _direction = MoveTo.Right;
-    }
+    public void IncreaseSliderSpeed() => _sliderSpeed = _speedIncreaseCurve.Evaluate(_iteration += _speedIncreaseValue);
 
-    public void ResetFillArea()
+    public void ResetSliderAndArea()
     {
-        RectTransform.Edge edge = (RectTransform.Edge)Random.Range(0, 2);
+        _direction = MoveTo.Right;
+        _view.Slider.value = _view.Slider.minValue;
+
+        RectTransform.Edge edge = (RectTransform.Edge) Random.Range(0, 2);
         float size = 20 * Random.Range(3, 8);
-        float inset = Random.Range(0.0f, 100.0f);
-        
-        _fillArea.SetInsetAndSizeFromParentEdge(edge, inset, size);
+        float inset = Random.Range(0.0f, 150.0f);
+        _view.WinArea.SetInsetAndSizeFromParentEdge(edge, inset, size);
     }
 
     public bool IsHandleOverWinningArea()
     {
         Vector3[] corners = new Vector3[4];
-        _handle.GetWorldCorners(corners);
+        _view.Handle.GetWorldCorners(corners);
         float centerX = (corners[0].x + corners[3].x) / 2.0f;
 
-        _fillArea.GetWorldCorners(corners);
+        _view.WinArea.GetWorldCorners(corners);
         return centerX >= corners[0].x && centerX <= corners[3].x;
     }
 }
