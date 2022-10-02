@@ -4,20 +4,24 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class FpsCounter : MonoBehaviour
 {
-    private Text _fpsCounter;
+    private Text _fpsCounterText;
     private int _counter;
     private float _time;
-    void Start() => _fpsCounter = GetComponent<Text>();
 
-    void Update()
+    private void Start()
+    {
+        _fpsCounterText = GetComponent<Text>();
+        Application.targetFrameRate = 120;
+        QualitySettings.vSyncCount = 0;
+    }
+
+    private void Update()
     {
         _counter++;
         _time += Time.deltaTime;
-        if (_time >= 1.0f)
-        {
-            _fpsCounter.text = $"FPS: {_counter}";
-            _counter = 0;
-            _time = 0.0f;
-        }
+        if (_time < 1.0f) return;
+        
+        _fpsCounterText.text = $"FPS: {_counter}";
+        _time = _counter = 0;
     }
 }

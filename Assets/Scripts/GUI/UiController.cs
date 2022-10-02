@@ -10,7 +10,7 @@ namespace GUI
         public virtual void Start(GuiHandler gui)
         {
             Gui = gui;
-            View.OnUpdateAction += Update;
+            View.SetUpdateAction(Update);
         }
 
         protected virtual void Update() {}

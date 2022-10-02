@@ -13,8 +13,8 @@ namespace GUI
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (!IsButtonClick(eventData) && _gui.Axe.enabled) 
-                _gui.Axe.TryAttack();
+            if (!IsButtonClick(eventData) && _gui.AxeEngine.enabled) 
+                _gui.AxeEngine.TryAttack();
         }
     
         private static bool IsButtonClick(PointerEventData eventData)

@@ -7,16 +7,16 @@ namespace GUI.GameOverHUD
         {
             base.Start(gui);
             View.ADWatchButton.onClick.AddListener(OnAdWatchButtonClick);
-            View.PayButton.onClick.AddListener(OnPayButtonClick);
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
             View.ExitButton.onClick.AddListener(OnCloseButtonClick);
             
             Gui.PauseMenuViewController.View.ExitButton.onClick.AddListener(ResetGameOverMenu);
+            ScoreCounter.OnScoreChanged += SetScoreText;
         }
 
         public void OnGameOverMenuEnable()
         {
-            Gui.Axe.enabled = false;
+            Gui.AxeEngine.enabled = false;
             Gui.GameViewController.SetActive(false);
             Gui.GameOverViewController.SetActive(true);
         }
@@ -25,27 +25,17 @@ namespace GUI.GameOverHUD
         {
             // watching advertisement
             View.ADWatchButton.gameObject.SetActive(false);
-            View.PayButton.gameObject.SetActive(true);
-            
-            Gui.GameOverViewController.SetActive(false);
-            Gui.GameViewController.SetActive(true);
-            Gui.Axe.enabled = true;
-        }
-        
-        private void OnPayButtonClick()
-        {
-            // paying money to continue the game
-            View.PayButton.gameObject.SetActive(false);
             View.CloseButton.gameObject.SetActive(false);
             View.ExitButton.gameObject.SetActive(true);
             
             Gui.GameOverViewController.SetActive(false);
             Gui.GameViewController.SetActive(true);
-            Gui.Axe.enabled = true;
+            Gui.AxeEngine.enabled = true;
         }
         
         private void OnCloseButtonClick()
         {
+            ScoreCounter.ResetScore();
             ResetGameOverMenu();
             Gui.GameOverViewController.SetActive(false);
             Gui.MainMenuViewController.SetActive(true);
@@ -56,8 +46,10 @@ namespace GUI.GameOverHUD
         {
             View.CloseButton.gameObject.SetActive(true);
             View.ADWatchButton.gameObject.SetActive(true);
-            View.PayButton.gameObject.SetActive(false);
             View.ExitButton.gameObject.SetActive(false);
         }
+
+        private void SetScoreText(int score, int bestScore) =>
+            View.ScoreText.text = $"Score: {score}\n\nBest record: {bestScore}";
     }
 }

@@ -10,21 +10,23 @@ namespace GUI.PauseMenuHUD
             base.Start(gui);
             View.ExitButton.onClick.AddListener(OnExitButtonClick);
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
+            ScoreCounter.OnScoreChanged += SetScoreText;
         }
 
-        public void SetScoreInfoText(int score, int bestScore) =>
-            View.ScoreInfoText.text = $"Score: {score}\n\nBest Score: {bestScore}";
+        public void SetScoreText(int score, int bestScore) =>
+            View.ScoreText.text = $"Score: {score}\n\nBest Score: {bestScore}";
         
         private void OnCloseButtonClick()
         {
             Time.timeScale = 1.0f;
-            Gui.Axe.enabled = true;
+            Gui.AxeEngine.enabled = true;
             Gui.PauseMenuViewController.SetActive(false);
         }
 
         private void OnExitButtonClick()
         {
             Time.timeScale = 1.0f;
+            ScoreCounter.ResetScore();
             Gui.PauseMenuViewController.SetActive(false);
             Gui.GameViewController.SetActive(false);
             Gui.MainMenuViewController.SetActive(true);

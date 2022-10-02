@@ -29,11 +29,11 @@ namespace GUI
         [field: SerializeField] public SkinMenuViewController SkinMenuViewController { get; set; }
         [field: SerializeField] public PauseMenuViewController PauseMenuViewController { get; set; }
         [field: SerializeField] public GameOverViewController GameOverViewController { get; set; }
-        public Axe Axe { get; private set; }
+        public AxeEngine AxeEngine { get; private set; }
 
         private void Start()
         {
-            Axe = FindObjectOfType<Axe>();
+            AxeEngine = FindObjectOfType<AxeEngine>();
             MainMenuViewController.Start(this);
             AdMenuViewController.Start(this);
             GameViewController.Start(this);

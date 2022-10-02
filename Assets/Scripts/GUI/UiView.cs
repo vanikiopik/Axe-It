@@ -5,7 +5,8 @@ namespace GUI
 {
     public abstract class UiView : MonoBehaviour
     {
-        public Action OnUpdateAction { get; set; }
+        private Action OnUpdateAction { get; set; }
+        public void SetUpdateAction(Action updateAction) => OnUpdateAction += updateAction;
         private void Update() => OnUpdateAction?.Invoke();
     }
 }

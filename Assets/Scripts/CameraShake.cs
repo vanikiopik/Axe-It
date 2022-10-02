@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraShake : MonoBehaviour
 {
-    [SerializeField] private float _sizeDelta;
+    [SerializeField] private float _deltaDistance;
     [SerializeField] private int _shakingCount;
     [SerializeField] private float _duration;
 
@@ -15,8 +15,8 @@ public class CameraShake : MonoBehaviour
     {
         _path = new Vector3[_shakingCount + 1];
         _path[_shakingCount] = transform.position;
-        _path[_shakingCount - 1] = _path[_shakingCount] - new Vector3(_sizeDelta, 0, 0);
-        _path[_shakingCount - 2] = _path[_shakingCount] + new Vector3(_sizeDelta, 0, 0);
+        _path[_shakingCount - 1] = _path[_shakingCount] - new Vector3(_deltaDistance, 0, 0);
+        _path[_shakingCount - 2] = _path[_shakingCount] + new Vector3(_deltaDistance, 0, 0);
         
         for (int i = _shakingCount - 3; i >= 0; --i) _path[i] = _path[i + 2];
     }
