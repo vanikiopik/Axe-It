@@ -3746,6 +3746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScoreText>k__BackingField: {fileID: 344200901}
+  <ReviveText>k__BackingField: {fileID: 929221487}
   <ADWatchButton>k__BackingField: {fileID: 165881159}
   <ExitButton>k__BackingField: {fileID: 847003283}
   <CloseButton>k__BackingField: {fileID: 75978514}
@@ -4985,6 +4986,7 @@ MonoBehaviour:
     <View>k__BackingField: {fileID: 547996238}
   <GameOverViewController>k__BackingField:
     <View>k__BackingField: {fileID: 507576255}
+    _reviveTextExpansionSpeed: 1
 --- !u!114 &692814805
 MonoBehaviour:
   m_ObjectHideFlags: 0

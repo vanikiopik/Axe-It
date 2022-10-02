@@ -1,8 +1,14 @@
+using UnityEngine;
+
 namespace GUI.GameOverHUD
 {
     [System.Serializable]
     public class GameOverViewController : UiController<GameOverView>
     {
+        [SerializeField] private float _reviveTextExpansionSpeed;
+
+        private float _time;
+        
         public override void Start(GuiHandler gui)
         {
             base.Start(gui);
@@ -12,6 +18,13 @@ namespace GUI.GameOverHUD
             
             Gui.PauseMenuViewController.View.ExitButton.onClick.AddListener(ResetGameOverMenu);
             ScoreCounter.OnScoreChanged += SetScoreText;
+        }
+
+        protected override void Update()
+        {
+            _time += _reviveTextExpansionSpeed * Time.deltaTime;
+            float scaleValue = (Mathf.Sin(_time) + 4) / 6;
+            View.ReviveText.localScale = new Vector3(scaleValue, scaleValue, 1);
         }
 
         public void OnGameOverMenuEnable()
