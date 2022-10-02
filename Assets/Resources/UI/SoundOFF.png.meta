@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 896d1c73beb7938418a731caa04d1f12
+guid: 5d4748a8cfe7c20409ce94c79a8c25bc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,11 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-<<<<<<< HEAD
-  spriteBorder: {x: 72, y: 72, z: 72, w: 72}
-=======
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
->>>>>>> vanikiopik
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -123,11 +119,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-<<<<<<< HEAD
-    internalID: 1537655665
-=======
     internalID: 0
->>>>>>> vanikiopik
     vertices: []
     indices: 
     edges: []
