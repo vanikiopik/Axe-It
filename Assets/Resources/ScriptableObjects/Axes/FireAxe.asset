@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51223f21a7eb5c743accaad00a9ab73f, type: 3}
+  m_Name: FireAxe
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Fire Axe
+  <Icon>k__BackingField: {fileID: 21300000, guid: e19bedd3c7787ae4781cacf991fdc368,
+    type: 3}
+  <Price>k__BackingField: 250
+  <IsBought>k__BackingField: 0
+  <IsSelected>k__BackingField: 0
+  <Mesh>k__BackingField: {fileID: 7643697815777538898, guid: f1499d864f3f072408f1745912d7cf63,
+    type: 3}
+  <Materials>k__BackingField:
+  - {fileID: 7026395161905359318, guid: f1499d864f3f072408f1745912d7cf63, type: 3}
+  - {fileID: -982165312698572142, guid: f1499d864f3f072408f1745912d7cf63, type: 3}
+  - {fileID: -121204659406872207, guid: f1499d864f3f072408f1745912d7cf63, type: 3}
+  - {fileID: -740019097763547607, guid: f1499d864f3f072408f1745912d7cf63, type: 3}

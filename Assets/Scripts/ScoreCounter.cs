@@ -1,10 +1,10 @@
-using System;
+using UnityEngine.Events;
 
 public static class ScoreCounter
 {
     private static int BestScore { get; set; }
     public static int Score { get; set; }
-    public static Action<int, int> OnScoreChanged { get; set; }
+    public static UnityEvent<int, int> OnScoreChanged { get; } = new();
 
     public static void IncreaseScore()
     {

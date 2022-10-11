@@ -1,26 +1,35 @@
-using GUI;
+using GUI.GuiHandler;
+using Skins;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshCollider))]
 [RequireComponent(typeof(Animator))]
 public class AxeEngine : MonoBehaviour
 {
     private enum AxeState { Idle, Attack };
     private AxeState State { get; set; }
     
-    private GuiHandler _gui;
-    private Animator _animator;
-    private Wood[] _woods;
-    private System.Action _cameraShaking;
+    private Gui _gui;
+    private AxeGraphics _axeGraphics;
 
-    private int _woodsCount; // temp
+    public System.Action CameraShaking { get; set; }
+    public bool IsWoodAxed { get; private set; }
+
+    private void Awake()
+    {
+        _axeGraphics = new AxeGraphics(
+            GetComponent<MeshFilter>(),
+            GetComponent<MeshRenderer>(),
+            GetComponent<MeshCollider>(),
+            GetComponent<Animator>());
+    }
 
     private void Start()
     {
         State = AxeState.Idle;
-        _gui = GuiHandler.Instance;
-        _animator = GetComponent<Animator>();
-        _woods = FindObjectsOfType<Wood>();
-        _cameraShaking += Camera.main.gameObject.GetComponent<CameraShake>().Shake;
+        _gui = Gui.Instance;
     }
 
     public void TryAttack()
@@ -28,26 +37,17 @@ public class AxeEngine : MonoBehaviour
         if (State == AxeState.Attack) return;
 
         _gui.GameViewController.StopSliderAndArea();
-        
-        if (_gui.GameViewController.IsHandleOverWinArea())
-            _animator.SetTrigger("HitAttack");
-        else
-            _animator.SetTrigger((Random.Range(0, 2) == 0 ? "Left" : "Right") + "MissAttack");
+        IsWoodAxed = _gui.GameViewController.IsHandleOverWinArea();
+        _axeGraphics.PlayAnimation(IsWoodAxed);
     }
 
-    public void CameraShake() => _cameraShaking?.Invoke();
+    public void LoadGraphics(Axe model) => _axeGraphics.Load(model);
+
+    public void CameraShake() => CameraShaking?.Invoke();
 
     public void IncreaseScore() => ScoreCounter.IncreaseScore();
 
-    public void ThrowWoods()
-    {
-        foreach (var wood in _woods) 
-            StartCoroutine(wood.Throw(300.0f, 0.5f));
-    }
+    public void ResetAfterAttack() => _gui.GameViewController.ResetSliderAndArea();
 
-    public void ResetAfterAttack() =>
-        _gui.GameViewController.ResetSliderAndArea();
-
-    public void EnableGameOver() =>
-        _gui.GameOverViewController.OnGameOverMenuEnable();
+    public void EnableGameOver() => _gui.GameOverViewController.OnGameOverMenuEnable();
 }

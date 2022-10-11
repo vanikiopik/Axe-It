@@ -12,7 +12,7 @@ namespace Engines
         private Slider _slider;
         private float _sliderSpeed;
 
-        public void Start(Slider slider)
+        public void Initialize(Slider slider)
         {
             _direction = MoveDirection.None;
             _slider = slider;

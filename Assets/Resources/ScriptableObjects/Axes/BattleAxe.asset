@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51223f21a7eb5c743accaad00a9ab73f, type: 3}
+  m_Name: BattleAxe
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Battle Axe
+  <Icon>k__BackingField: {fileID: 21300000, guid: fb1ea31abbaf64447a6cdcceaa416a65,
+    type: 3}
+  <Price>k__BackingField: 250
+  <IsBought>k__BackingField: 0
+  <IsSelected>k__BackingField: 0
+  <Mesh>k__BackingField: {fileID: -489752488287846591, guid: 1c6e0f26669780d42a29f9e74320ba93,
+    type: 3}
+  <Materials>k__BackingField:
+  - {fileID: 284011330209177726, guid: 1c6e0f26669780d42a29f9e74320ba93, type: 3}
+  - {fileID: -140663096455132249, guid: 1c6e0f26669780d42a29f9e74320ba93, type: 3}
+  - {fileID: -4059903750495694150, guid: 1c6e0f26669780d42a29f9e74320ba93, type: 3}
+  - {fileID: -5362341364230938589, guid: 1c6e0f26669780d42a29f9e74320ba93, type: 3}

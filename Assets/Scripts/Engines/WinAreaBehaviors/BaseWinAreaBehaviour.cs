@@ -6,7 +6,7 @@ namespace Engines.WinAreaBehaviors
     {
         protected RectTransform Area { get; private set; }
         
-        public void Start(RectTransform winArea) => Area = winArea;
+        public void Initialize(RectTransform winArea) => Area = winArea;
         
         public virtual void ResetArea(float newAreaSize)
         {
