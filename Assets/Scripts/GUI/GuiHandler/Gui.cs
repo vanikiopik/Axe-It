@@ -1,3 +1,4 @@
+using Axe;
 using GUI.GuiHandler.ADMenuHUD;
 using GUI.GuiHandler.GameHUD;
 using GUI.GuiHandler.GameOverHUD;
@@ -10,6 +11,7 @@ using UnityEngine.Events;
 
 namespace GUI.GuiHandler
 {
+    [RequireComponent(typeof(InputHandler))]
     public class Gui : MonoBehaviour
     {
         #region Singleton

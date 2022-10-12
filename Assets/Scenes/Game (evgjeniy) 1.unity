@@ -6999,7 +6999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _axe: {fileID: 8803663181306750302}
-  _deltaDistance: 0.05
+  _deltaDistanceX: 0.05
   _shakingCount: 20
   _duration: 0.5
 --- !u!1 &2105405924

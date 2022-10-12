@@ -2,7 +2,7 @@ using Skins;
 
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews.Container
 {
-    public class ThemeViewContainer : SkinViewContainer<Theme>
+    public class ThemeViewContainer : SkinViewContainer<ThemeSkin>
     {
         protected override void TryLoadModels()
         {

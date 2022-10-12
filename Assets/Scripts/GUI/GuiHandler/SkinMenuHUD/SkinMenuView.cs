@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Button = UnityEngine.UI.Button;
 
 namespace GUI.GuiHandler.SkinMenuHUD
 {

@@ -6,7 +6,7 @@ namespace Skins
 {
     [System.Serializable]
     [CreateAssetMenu(fileName = "Theme", menuName = "Items/Theme")]
-    public class Theme : Skin
+    public class ThemeSkin : Skin
     {
         [field: Header("Graphics")]
         [SerializeField] private GameObject _prefab;
@@ -17,8 +17,8 @@ namespace Skins
         {
             foreach (var view in views)
             {
-                GameObject theme = (view.Model as Theme)?._theme;
-                if (theme != null) Destroy(theme);
+                if (view.Model == this) continue;
+                Destroy((view.Model as ThemeSkin)?._theme);
             }
 
             if (_theme == null) _theme = Instantiate(_prefab);

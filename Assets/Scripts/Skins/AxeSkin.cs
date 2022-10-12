@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Axe;
 using GUI.GuiHandler.SkinMenuHUD.SkinViews;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Skins
 {
     [System.Serializable]
     [CreateAssetMenu(fileName = "Axe", menuName = "Items/Axe")]
-    public class Axe : Skin
+    public class AxeSkin : Skin
     {
         [field: Header("Graphics")]
         [field: SerializeField] public Mesh Mesh { get; set; }
