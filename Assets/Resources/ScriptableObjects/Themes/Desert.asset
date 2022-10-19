@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Desert
   <Icon>k__BackingField: {fileID: 21300000, guid: c39e1d82855fec241ab27f42e12e70bf,
     type: 3}
-  <Price>k__BackingField: 400
+  <Price>k__BackingField: 900
   <IsBought>k__BackingField: 0
   <IsSelected>k__BackingField: 0
   _prefab: {fileID: 6174883856827425018, guid: 36bcdb070bdae104490723b6def4f68e, type: 3}

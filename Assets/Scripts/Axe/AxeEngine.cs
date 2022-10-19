@@ -11,12 +11,14 @@ namespace Axe
     public class AxeEngine : MonoBehaviour
     {
         public enum AxeState { Idle, HitAttack, MissAttack }
-        public AxeState State { get; private set; }
+        
+        [field: Min(0)][field: SerializeField] private int _goldWoodReward;
     
         private Gui _gui;
         private AxeGraphics _axeGraphics;
 
         public System.Action CameraShaking { get; set; }
+        public AxeState State { get; private set; }
 
         private void Awake()
         {
@@ -44,9 +46,11 @@ namespace Axe
 
         public void LoadGraphics(AxeSkin model) => _axeGraphics.Load(model);
 
+        public void GoldWoodAxed() => _gui.MoneyCounter.AddCoins(_goldWoodReward);
+
         public void CameraShake() => CameraShaking?.Invoke();
 
-        public void IncreaseScore() => ScoreCounter.IncreaseScore();
+        public void IncreaseScore() => _gui.ScoreCounter.IncreaseScore();
 
         public void ResetAfterAttack() => _gui.GameViewController.ResetSliderAndArea();
 

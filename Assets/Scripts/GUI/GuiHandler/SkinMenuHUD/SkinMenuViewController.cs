@@ -6,11 +6,17 @@ namespace GUI.GuiHandler.SkinMenuHUD
     [System.Serializable]
     public class SkinMenuViewController : UiController<SkinMenuView>
     {
+        private AxeViewContainer _axeContainer;
+        private ThemeViewContainer _themeContainer;
+
         public override void Initialize(Gui gui, UnityEvent onUpdate)
         {
             base.Initialize(gui, onUpdate);
-            View.AxeScrollView.content.GetComponent<AxeViewContainer>().Initialize();
-            View.ThemeScrollView.content.GetComponent<ThemeViewContainer>().Initialize();
+            _axeContainer = View.AxeScrollView.content.GetComponent<AxeViewContainer>();
+            _themeContainer = View.ThemeScrollView.content.GetComponent<ThemeViewContainer>();
+            _axeContainer.Initialize(Gui.MoneyCounter);
+            _themeContainer.Initialize(Gui.MoneyCounter);
+            
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
             View.AxeButton.onClick.AddListener(OnAxesButtonClick);
             View.ThemeButton.onClick.AddListener(OnThemesButtonClick);

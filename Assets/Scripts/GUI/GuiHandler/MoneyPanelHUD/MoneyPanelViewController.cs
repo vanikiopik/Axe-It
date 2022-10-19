@@ -15,10 +15,14 @@ namespace GUI.GuiHandler.MoneyPanelHUD
         {
             base.Initialize(gui, onUpdate);
             View.AddMoneyButton.onClick.AddListener(OnAddMoneyButtonClick);
+            Gui.MoneyCounter.OnCoinsChanged.AddListener(SetMoneyText);
         }
 
-        public void SetMoneyText(int amount) => View.MoneyText.text = amount.ToString();
-        
+        public void SetMoneyText(int amount)
+        {
+            View.MoneyText.text = amount.ToString();
+        }
+
         private void OnAddMoneyButtonClick()
         {
             Gui.MainMenuViewController.SetActive(false);

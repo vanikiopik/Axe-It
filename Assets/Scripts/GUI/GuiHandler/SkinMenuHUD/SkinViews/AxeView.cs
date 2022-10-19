@@ -1,6 +1,4 @@
-using Skins;
-
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
 {
-    public class AxeView : SkinView<AxeSkin> { }
+    public class AxeView : SkinView<Skins.AxeSkin> { }
 }

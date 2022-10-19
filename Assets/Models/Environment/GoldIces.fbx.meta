@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Gold
     second: {fileID: 2100000, guid: 7a6550b484233d14990360abae2c899b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Snow
+    second: {fileID: 2100000, guid: 908e6f31d0267c749bd8fc9649054973, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

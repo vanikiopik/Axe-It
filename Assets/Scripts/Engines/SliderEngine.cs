@@ -11,12 +11,14 @@ namespace Engines
         private MoveDirection _direction;
         private Slider _slider;
         private float _sliderSpeed;
+        private ScoreCounter _scoreCounter;
 
-        public void Initialize(Slider slider)
+        public void Initialize(Slider slider, ScoreCounter scoreCounter)
         {
             _direction = MoveDirection.None;
             _slider = slider;
             _sliderSpeed = _speedIncrease[0].value;
+            _scoreCounter = scoreCounter;
         }
 
         public void Update()
@@ -31,7 +33,7 @@ namespace Engines
         {
             _direction = MoveDirection.Right;
             _slider.value = _slider.minValue;
-            _sliderSpeed = _speedIncrease.Evaluate(ScoreCounter.Score);
+            _sliderSpeed = _speedIncrease.Evaluate(_scoreCounter.Score);
         }
 
         public void Stop() => _direction = MoveDirection.None;

@@ -15,4 +15,12 @@ namespace Skins
 
         public abstract void LoadGraphic<T>(List<SkinView<T>> views) where T : Skin;
     }
+
+    [System.Serializable]
+    public class SkinData
+    {
+        public string Name { get; set; }
+        public bool IsBought { get; set; }
+        public bool IsSelected { get; set; }
+    }
 }

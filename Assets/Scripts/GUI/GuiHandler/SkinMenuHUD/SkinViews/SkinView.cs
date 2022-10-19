@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Skins;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
@@ -9,26 +10,29 @@ namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
     public abstract class SkinView<T> : UiView where T : Skin
     {
         private List<SkinView<T>> _allViews;
+        private MoneyCounter _moneyCounter;
         
-        [field: SerializeField] public Image Icon { get; set; }
-        [field: SerializeField] public Text Name { get; set; }
-        [field: SerializeField] public Text Price { get; set; }
-        [field: SerializeField] public Button BuyButton { get; set; }
-        [field: SerializeField] public Button SelectButton { get; set; }
+        [field: SerializeField] public Image Icon { get; private set; }
+        [field: SerializeField] public Text Name { get; private set; }
+        [field: SerializeField] public Text Price { get; private set; }
+        [field: SerializeField] public Button BuyButton { get; private set; }
+        [field: SerializeField] public Button SelectButton { get; private set; }
         
         [field: Header("Sprites")]
-        [field: SerializeField] public Sprite SelectionEnable { get; set; }
-        [field: SerializeField] public Sprite SelectionDisable { get; set; }
+        [field: SerializeField] public Sprite SelectionEnable { get; private set; }
+        [field: SerializeField] public Sprite SelectionDisable { get; private set; }
         
         public T Model { get; private set; }
 
-        public void Initialize(T model, List<SkinView<T>> views)
+        public void Initialize(T model, List<SkinView<T>> views, MoneyCounter moneyCounter, UnityAction saveSkinsData)
         {
             Model = model;
             _allViews = views;
+            _moneyCounter = moneyCounter;
             BuyButton.onClick.AddListener(OnBuyButtonClick);
+            BuyButton.onClick.AddListener(saveSkinsData);
             SelectButton.onClick.AddListener(Select);
-            
+
             UpdateView();
         }
 
@@ -57,7 +61,7 @@ namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
 
         private void OnBuyButtonClick()
         {
-            // decrease money amount
+            if (!_moneyCounter.TryTakeCoins(Model.Price)) return;
             Model.IsBought = true;
             Select();
         }

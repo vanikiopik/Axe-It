@@ -13,11 +13,11 @@ namespace GUI.GuiHandler.GameHUD
         public override void Initialize(Gui gui, UnityEvent onUpdate)
         {
             base.Initialize(gui, onUpdate);
-            SliderEngine.Initialize(View.Slider);
-            AreaEngine.Initialize(View.WinArea);
+            SliderEngine.Initialize(View.Slider, Gui.ScoreCounter);
+            AreaEngine.Initialize(View.WinArea, Gui.ScoreCounter);
 
             View.PauseButton.onClick.AddListener(OnPauseButtonClick);
-            ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
+            Gui.ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
         }
 
         protected override void Update()
@@ -55,6 +55,9 @@ namespace GUI.GuiHandler.GameHUD
             Gui.PauseMenuViewController.SetActive(true);
         }
 
-        public void SetScoreText(int score, int bestScore) => View.ScoreText.text = $"Score: {score}";
+        public void SetScoreText(int score, int bestScore)
+        {
+            View.ScoreText.text = $"Score: {score}";
+        }
     }
 }

@@ -1,12 +1,7 @@
-using Skins;
-
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews.Container
 {
-    public class ThemeViewContainer : SkinViewContainer<ThemeSkin>
+    public class ThemeViewContainer : SkinViewContainer<Skins.ThemeSkin>
     {
-        protected override void TryLoadModels()
-        {
-            // try to load from save file
-        }
+        protected override string GetSaveKey() => "ThemeSkins";
     }
 }

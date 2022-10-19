@@ -1,6 +1,4 @@
-using Skins;
-
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
 {
-    public class ThemeView : SkinView<ThemeSkin> { }
+    public class ThemeView : SkinView<Skins.ThemeSkin> { }
 }

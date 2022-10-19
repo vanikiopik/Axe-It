@@ -11,12 +11,14 @@ namespace GUI.GuiHandler.PauseMenuHUD
             base.Initialize(gui, onUpdate);
             View.ExitButton.onClick.AddListener(OnExitButtonClick);
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
-            ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
+            Gui.ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
         }
 
-        public void SetScoreText(int score, int bestScore) =>
+        public void SetScoreText(int score, int bestScore)
+        {
             View.ScoreText.text = $"Score: {score}\n\nBest Score: {bestScore}";
-        
+        }
+
         private void OnCloseButtonClick()
         {
             Time.timeScale = 1.0f;
@@ -27,7 +29,7 @@ namespace GUI.GuiHandler.PauseMenuHUD
         private void OnExitButtonClick()
         {
             Time.timeScale = 1.0f;
-            ScoreCounter.ResetScore();
+            Gui.ScoreCounter.ResetScore();
             Gui.PauseMenuViewController.SetActive(false);
             Gui.GameViewController.SetActive(false);
             Gui.MainMenuViewController.SetActive(true);

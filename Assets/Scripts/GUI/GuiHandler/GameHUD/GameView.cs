@@ -7,10 +7,10 @@ namespace GUI.GuiHandler.GameHUD
 {
     public class GameView : UiView
     {
-        [field: SerializeField] public Slider Slider { get; set; }
-        [field: SerializeField] public RectTransform WinArea { get; set; }
-        [field: SerializeField] public RectTransform Handle { get; set; }
-        [field: SerializeField] public Text ScoreText { get; set; }
-        [field: SerializeField] public Button PauseButton { get; set; }
+        [field: SerializeField] public Slider Slider { get; private set; }
+        [field: SerializeField] public RectTransform WinArea { get; private set; }
+        [field: SerializeField] public RectTransform Handle { get; private set; }
+        [field: SerializeField] public Text ScoreText { get; private set; }
+        [field: SerializeField] public Button PauseButton { get; private set; }
     }
 }

@@ -13,7 +13,7 @@ namespace GUI.GuiHandler.GameOverHUD
             View.ExitButton.onClick.AddListener(OnCloseButtonClick);
             
             Gui.PauseMenuViewController.View.ExitButton.onClick.AddListener(ResetGameOverMenu);
-            ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
+            Gui.ScoreCounter.OnScoreChanged.AddListener(SetScoreText);
         }
 
         protected override void Update() => View.ReviveText.Update();
@@ -27,19 +27,23 @@ namespace GUI.GuiHandler.GameOverHUD
 
         private void OnAdWatchButtonClick()
         {
-            // watching advertisement
-            View.ADWatchButton.gameObject.SetActive(false);
-            View.CloseButton.gameObject.SetActive(false);
-            View.ExitButton.gameObject.SetActive(true);
-            
-            Gui.GameOverViewController.SetActive(false);
-            Gui.GameViewController.SetActive(true);
-            Gui.AxeEngine.enabled = true;
+            // TODO - watching advertisement
+
+            if (true /* TODO - check if AD watched full */)
+            {
+                View.ADWatchButton.gameObject.SetActive(false);
+                View.CloseButton.gameObject.SetActive(false);
+                View.ExitButton.gameObject.SetActive(true);
+             
+                Gui.GameOverViewController.SetActive(false);
+                Gui.GameViewController.SetActive(true);
+                Gui.AxeEngine.enabled = true;
+            }
         }
         
         private void OnCloseButtonClick()
         {
-            ScoreCounter.ResetScore();
+            Gui.ScoreCounter.ResetScore();
             ResetGameOverMenu();
             Gui.GameOverViewController.SetActive(false);
             Gui.MainMenuViewController.SetActive(true);
@@ -53,7 +57,9 @@ namespace GUI.GuiHandler.GameOverHUD
             View.ExitButton.gameObject.SetActive(false);
         }
 
-        private void SetScoreText(int score, int bestScore) =>
+        private void SetScoreText(int score, int bestScore)
+        {
             View.ScoreText.text = $"Score: {score}\n\nBest record: {bestScore}";
+        }
     }
 }

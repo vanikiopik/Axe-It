@@ -2,32 +2,31 @@ using UnityEngine;
 
 namespace Wood
 {
-    public class WoodRespawner
+    public class WoodSpawner
     {
-        private readonly Rigidbody _rigidbody;
-        private readonly MeshCollider _collider;
-
-        private readonly Transform _transform;
         private readonly Vector3 _spawnPosition;
         private readonly Quaternion _spawnRotation;
 
-        public Rigidbody Rigidbody => _rigidbody;
+        private readonly Transform _transform;
+        private readonly MeshCollider _collider;
 
-        public WoodRespawner(Transform transform, Rigidbody rigidbody, MeshCollider collider)
+        public Rigidbody Rigidbody { get; }
+
+        public WoodSpawner(Transform transform, Rigidbody rigidbody, MeshCollider collider)
         {
+            Rigidbody = rigidbody;
+            _collider = collider;
             _transform = transform;
             _spawnPosition = _transform.position;
             _spawnRotation = _transform.rotation;
-            _collider = collider;
-            _rigidbody = rigidbody;
         }
 
         public void SetTriggeredAndKinematic(bool value)
         {
             _collider.isTrigger = value;
-            _rigidbody.isKinematic = value;
+            Rigidbody.isKinematic = value;
         }
-
+        
         public void Respawn()
         {
             SetTriggeredAndKinematic(true);

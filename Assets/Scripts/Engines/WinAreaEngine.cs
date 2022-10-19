@@ -16,9 +16,11 @@ namespace Engines
         [SerializeField] private ScalableWinArea _scalableWinArea;
 
         private BaseWinAreaBehaviour _currentBehaviour;
+        private ScoreCounter _scoreCounter;
         
-        public void Initialize(RectTransform winArea)
+        public void Initialize(RectTransform winArea, ScoreCounter scoreCounter)
         {
+            _scoreCounter = scoreCounter;
             _defaultWinArea.Initialize(winArea);
             _movableWinArea.Initialize(winArea);
             _scalableWinArea.Initialize(winArea);
@@ -27,7 +29,7 @@ namespace Engines
         
         public void Reset()
         {
-            switch (ScoreCounter.Score / _areaSizeDecrease[_areaSizeDecrease.length - 1].time)
+            switch (_scoreCounter.Score / _areaSizeDecrease[_areaSizeDecrease.length - 1].time)
             {
                 case >= 0.0f and <= 0.3f:
                     _currentBehaviour = _defaultWinArea;
@@ -49,7 +51,7 @@ namespace Engines
                     break;
             }
 
-            float maxSize = _areaSizeDecrease.Evaluate(ScoreCounter.Score) + _minMaxOffset / 2.0f;
+            float maxSize = _areaSizeDecrease.Evaluate(_scoreCounter.Score) + _minMaxOffset / 2.0f;
             _currentBehaviour.ResetArea(Random.Range(maxSize - _minMaxOffset, maxSize));
         }
         

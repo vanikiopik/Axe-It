@@ -5,18 +5,18 @@ namespace GUI.GuiHandler.SkinMenuHUD
 {
     public class SkinMenuView : UiView
     {
-        [field: SerializeField] public Button CloseButton { get; set; }
+        [field: SerializeField] public Button CloseButton { get; private set; }
         
         [field: Header("Buttons")]
-        [field: SerializeField] public Outline AxeOutline { get; set; }
-        [field: SerializeField] public Outline ThemeOutline { get; set; }
+        [field: SerializeField] public Outline AxeOutline { get; private set; }
+        [field: SerializeField] public Outline ThemeOutline { get; private set; }
 
         [field: Header("Buttons")]
-        [field: SerializeField] public Button AxeButton { get; set; }
-        [field: SerializeField] public Button ThemeButton { get; set; }
+        [field: SerializeField] public Button AxeButton { get; private set; }
+        [field: SerializeField] public Button ThemeButton { get; private set; }
         
         [field: Header("Scroll View's")]
-        [field: SerializeField] public ScrollRect AxeScrollView { get; set; }
-        [field: SerializeField] public ScrollRect ThemeScrollView { get; set; }
+        [field: SerializeField] public ScrollRect AxeScrollView { get; private set; }
+        [field: SerializeField] public ScrollRect ThemeScrollView { get; private set; }
     }
 }

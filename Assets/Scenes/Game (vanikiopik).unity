@@ -3956,8 +3956,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e16cf12440f7143a6c8ef36ea83a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ReviveText>k__BackingField:
+    <Text>k__BackingField: {fileID: 0}
+    _scaleSpeed: 0
+    _minScale: 0
+    _maxScale: 0
   <ScoreText>k__BackingField: {fileID: 344200901}
-  <ReviveText>k__BackingField: {fileID: 929221487}
   <ADWatchButton>k__BackingField: {fileID: 165881159}
   <ExitButton>k__BackingField: {fileID: 847003283}
   <CloseButton>k__BackingField: {fileID: 75978514}
@@ -4654,6 +4658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09a54d815769d941ba0e19b9eb7e4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PS: {fileID: 0}
 --- !u!1 &609673250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5123,6 +5128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c624ff153d062364db127e621719f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AxeEngine>k__BackingField: {fileID: 0}
+  <ScoreCounter>k__BackingField: {fileID: 0}
+  <MoneyCounter>k__BackingField: {fileID: 0}
   <GameViewController>k__BackingField:
     <View>k__BackingField: {fileID: 1985470954}
     <SliderEngine>k__BackingField:
@@ -5193,7 +5201,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      _minAndMaxSizeOffset: 20
+      _minMaxOffset: 0
       _movableWinArea:
         _minSpeed: 200
         _maxSpeed: 300
@@ -5204,18 +5212,20 @@ MonoBehaviour:
         _maxScaleMultiplier: 1.25
   <MainMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 1062870547}
-    _startTextSpeed: 1
+    _bonusReward: 0
+    _bonusCooldown: 0
   <MoneyPanelViewController>k__BackingField:
     <View>k__BackingField: {fileID: 285370656}
   <AdMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 2000606515}
+    _reward: 0
+    _adCooldown: 0
   <SkinMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 1486506299}
   <PauseMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 547996238}
   <GameOverViewController>k__BackingField:
     <View>k__BackingField: {fileID: 507576255}
-    _reviveTextExpansionSpeed: 1
 --- !u!114 &692814805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7823,7 +7833,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52eb3af078852344f8bc7698c6f0f756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StartText>k__BackingField: {fileID: 1831289082}
+  <StartText>k__BackingField:
+    <Text>k__BackingField: {fileID: 0}
+    _scaleSpeed: 0
+    _minScale: 0
+    _maxScale: 0
   <BestRecordText>k__BackingField: {fileID: 1511806078}
   <BonusCooldownText>k__BackingField: {fileID: 1868481499}
   <PlayButton>k__BackingField: {fileID: 666591642}
@@ -10955,6 +10969,9 @@ GameObject:
   - component: {fileID: 1640872618}
   - component: {fileID: 1640872620}
   - component: {fileID: 1640872619}
+  - component: {fileID: 1640872623}
+  - component: {fileID: 1640872622}
+  - component: {fileID: 1640872621}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -10990,6 +11007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1029940ba6b0a674d9c1d59e26ee2acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goldWoodReward: 0
 --- !u!95 &1640872620
 Animator:
   serializedVersion: 4
@@ -11010,6 +11028,70 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &1640872621
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640872617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!23 &1640872622
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640872617}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1640872623
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640872617}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1644669319
 GameObject:
   m_ObjectHideFlags: 0
@@ -13486,8 +13568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6a70e69fba9984d94fa795d954f0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AwardAmountText>k__BackingField: {fileID: 0}
   <CloseButton>k__BackingField: {fileID: 1851354526}
   <AdWatchButton>k__BackingField: {fileID: 1111318945}
+  <CooldownText>k__BackingField: {fileID: 0}
 --- !u!114 &2000606516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13792,7 +13876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc2d261c563a204e8600f96b8943822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deltaDistance: 0.05
+  _axe: {fileID: 0}
+  _deltaDistanceX: 0
   _shakingCount: 20
   _duration: 0.5
 --- !u!1 &2105181233

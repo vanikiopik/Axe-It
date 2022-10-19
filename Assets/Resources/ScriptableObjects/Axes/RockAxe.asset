@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: RockAxe
   <Icon>k__BackingField: {fileID: 21300000, guid: 2cd2b05f775138f41a4046f4bd64cd56,
     type: 3}
-  <Price>k__BackingField: 250
+  <Price>k__BackingField: 600
   <IsBought>k__BackingField: 0
   <IsSelected>k__BackingField: 0
   <Mesh>k__BackingField: {fileID: 5370761648135586721, guid: d0bd3d6994fb07a41a9621ff0b9fd820,

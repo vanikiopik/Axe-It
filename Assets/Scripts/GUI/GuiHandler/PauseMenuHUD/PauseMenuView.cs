@@ -5,8 +5,8 @@ namespace GUI.GuiHandler.PauseMenuHUD
 {
     public class PauseMenuView : UiView
     {
-        [field: SerializeField] public Text ScoreText { get; set; }
-        [field: SerializeField] public Button CloseButton { get; set; }
-        [field: SerializeField] public Button ExitButton { get; set; }
+        [field: SerializeField] public Text ScoreText { get; private set; }
+        [field: SerializeField] public Button CloseButton { get; private set; }
+        [field: SerializeField] public Button ExitButton { get; private set; }
     }
 }

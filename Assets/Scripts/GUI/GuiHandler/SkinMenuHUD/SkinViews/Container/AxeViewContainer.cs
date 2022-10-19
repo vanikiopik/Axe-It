@@ -1,12 +1,7 @@
-using Skins;
-
 namespace GUI.GuiHandler.SkinMenuHUD.SkinViews.Container
 {
-    public class AxeViewContainer : SkinViewContainer<AxeSkin>
+    public class AxeViewContainer : SkinViewContainer<Skins.AxeSkin>
     {
-        protected override void TryLoadModels()
-        {
-            // try to load from save file
-        }
+        protected override string GetSaveKey() => "AxeSkins";
     }
 }

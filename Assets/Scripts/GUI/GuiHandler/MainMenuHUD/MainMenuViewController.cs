@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace GUI.GuiHandler.MainMenuHUD
@@ -5,7 +6,15 @@ namespace GUI.GuiHandler.MainMenuHUD
     [System.Serializable]
     public class MainMenuViewController : UiController<MainMenuView>
     {
-        public bool IsSoundOn { get; private set; } = true;
+        [Min(0)][SerializeField] private int _bonusReward;
+        
+        [Tooltip("Cooldown of getting bonus in seconds")]
+        [Min(0)][SerializeField] private float _bonusCooldown;
+        
+        private const string IsSoundOnSaveKey = "IsSoundOn";
+        private Timer _timer;
+        
+        public bool IsSoundOn { get; private set; }
 
         public override void Initialize(Gui gui, UnityEvent onUpdate)
         {
@@ -14,15 +23,26 @@ namespace GUI.GuiHandler.MainMenuHUD
             View.SoundButton.onClick.AddListener(SoundSwitch);
             View.BonusButton.onClick.AddListener(OnBonusButtonClick);
             View.SkinButton.onClick.AddListener(OnSkinMenuButtonClick);
-            ScoreCounter.OnScoreChanged.AddListener(SetBestRecordText);
+            Gui.ScoreCounter.OnScoreChanged.AddListener(SetBestRecordText);
+
+            IsSoundOn = SaveSystem.Get<bool>(IsSoundOnSaveKey);
+            UpdateSoundView();
+
+            _timer = new Timer("NextBonusTime", _bonusCooldown);
         }
 
-        protected override void Update() => View.StartText.Update();
-
-        private void SoundSwitch()
+        protected override void Update()
         {
-            IsSoundOn = !IsSoundOn;
-            View.SoundButton.image.sprite = IsSoundOn ? View.SoundOnSprite : View.SoundOffSprite;
+            View.StartText.Update();
+            View.BonusCooldownText.text = _timer.IsEventCanBe ? "Get it!"
+                : $"{_timer.SpanHours}:{_timer.SpanMinutes}:{_timer.SpanSeconds}";
+        }
+
+        private void UpdateSoundView()
+        {
+            View.SoundButton.image.sprite = IsSoundOn
+                ? View.SoundOnSprite
+                : View.SoundOffSprite;
         }
         
         private void OnPlayButtonClick()
@@ -34,6 +54,13 @@ namespace GUI.GuiHandler.MainMenuHUD
             Gui.GameViewController.ResetSliderAndArea();
         }
 
+        private void SoundSwitch()
+        {
+            IsSoundOn = !IsSoundOn;
+            SaveSystem.Set(IsSoundOnSaveKey, IsSoundOn);
+            UpdateSoundView();
+        }
+
         private void OnSkinMenuButtonClick()
         {
             Gui.MoneyPanelViewController.Interactable = false;
@@ -41,10 +68,18 @@ namespace GUI.GuiHandler.MainMenuHUD
             Gui.SkinMenuViewController.SetActive(true);
             Gui.SkinMenuViewController.View.AxeButton.onClick?.Invoke();
         }
-        
-        private void OnBonusButtonClick() { /* gives player the bonus */  }
 
-        private void SetBestRecordText(int s, int bestScore) =>
+        private void OnBonusButtonClick()
+        {
+            if (!_timer.IsEventCanBe) return;
+            
+            Gui.MoneyCounter.AddCoins(_bonusReward);
+            _timer.Reset();
+        }
+
+        private void SetBestRecordText(int score, int bestScore)
+        {
             View.BestRecordText.text = $"Best record:\n{bestScore}";
+        }
     }
 }

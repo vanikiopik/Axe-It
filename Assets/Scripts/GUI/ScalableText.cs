@@ -7,7 +7,8 @@ namespace GUI
     public class ScalableText
     {
         [field: SerializeField] public Text Text { get; set; }
-        [SerializeField] private float _scaleSpeed;
+        
+        [Min(0)][SerializeField] private float _scaleSpeed;
         [Range(0.0f, 1.0f)][SerializeField] private float _minScale;
         [Range(1.0f, 2.0f)][SerializeField] private float _maxScale;
 

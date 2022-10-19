@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Arctic
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Arctic
-  <Icon>k__BackingField: {fileID: 21300000, guid: 667ba85bcc9c3524183902f48d923e68,
+  <Icon>k__BackingField: {fileID: 21300000, guid: cdcf8b05bdded894ca9371a00356ba89,
     type: 3}
-  <Price>k__BackingField: 400
+  <Price>k__BackingField: 900
   <IsBought>k__BackingField: 0
   <IsSelected>k__BackingField: 0
   _prefab: {fileID: 6073154522211475898, guid: 867c28eb22734c241a7190d3791b1f66, type: 3}
