@@ -1,3 +1,5 @@
+using Ads;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace GUI.GuiHandler.GameOverHUD
@@ -5,10 +7,19 @@ namespace GUI.GuiHandler.GameOverHUD
     [System.Serializable]
     public class GameOverViewController : UiController<GameOverView>
     {
+        [SerializeField] private RewardedAd _continueAd;
+        [SerializeField] private InterstitialAd _adBeforeGameOver;
+
+        [SerializeField] private int _gameOversAmountToAd;
+
+        private int _gameOversAmount;
+        
         public override void Initialize(Gui gui, UnityEvent onUpdate)
         {
             base.Initialize(gui, onUpdate);
-            View.ADWatchButton.onClick.AddListener(OnAdWatchButtonClick);
+            _adBeforeGameOver.Initialize();
+            _continueAd.Initialize(ContinueGameReward, View.ADWatchButton.onClick);
+
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
             View.ExitButton.onClick.AddListener(OnCloseButtonClick);
             
@@ -25,20 +36,15 @@ namespace GUI.GuiHandler.GameOverHUD
             Gui.GameOverViewController.SetActive(true);
         }
 
-        private void OnAdWatchButtonClick()
+        private void ContinueGameReward()
         {
-            // TODO - watching advertisement
-
-            if (true /* TODO - check if AD watched full */)
-            {
-                View.ADWatchButton.gameObject.SetActive(false);
-                View.CloseButton.gameObject.SetActive(false);
-                View.ExitButton.gameObject.SetActive(true);
+            View.ADWatchButton.gameObject.SetActive(false);
+            View.CloseButton.gameObject.SetActive(false);
+            View.ExitButton.gameObject.SetActive(true);
              
-                Gui.GameOverViewController.SetActive(false);
-                Gui.GameViewController.SetActive(true);
-                Gui.AxeEngine.enabled = true;
-            }
+            Gui.GameOverViewController.SetActive(false);
+            Gui.GameViewController.SetActive(true);
+            Gui.AxeEngine.enabled = true;
         }
         
         private void OnCloseButtonClick()
@@ -48,6 +54,9 @@ namespace GUI.GuiHandler.GameOverHUD
             Gui.GameOverViewController.SetActive(false);
             Gui.MainMenuViewController.SetActive(true);
             Gui.MoneyPanelViewController.Interactable = true;
+            
+            if (++_gameOversAmount % _gameOversAmountToAd == 0) 
+                _adBeforeGameOver.ShowAd();
         }
 
         private void ResetGameOverMenu()

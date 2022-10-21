@@ -32,6 +32,7 @@ namespace GUI.GuiHandler.SkinMenuHUD.SkinViews
             BuyButton.onClick.AddListener(OnBuyButtonClick);
             BuyButton.onClick.AddListener(saveSkinsData);
             SelectButton.onClick.AddListener(Select);
+            SelectButton.onClick.AddListener(saveSkinsData);
 
             UpdateView();
         }

@@ -1,4 +1,5 @@
 using System;
+using Ads;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,19 +8,22 @@ namespace GUI.GuiHandler.ADMenuHUD
     [Serializable]
     public class AdMenuViewController : UiController<AdMenuView>
     {
-        [Min(0)][SerializeField] private int _reward;
+        [SerializeField] private RewardedAd _rewardedAd;
         
+        [Min(0)][SerializeField] private int _reward;
+
         [Tooltip("Cooldown of watching advertisement in seconds")]
         [Min(0)][SerializeField] private float _adCooldown;
 
         private Timer _timer;
-        
+
         public override void Initialize(Gui gui, UnityEvent onUpdate)
         {
             base.Initialize(gui, onUpdate);
+            _rewardedAd.Initialize(GetReward, View.AdWatchButton.onClick);
+            
             View.AwardAmountText.text = _reward.ToString();
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
-            View.AdWatchButton.onClick.AddListener(OnWatchButtonClick);
 
             _timer = new Timer("NextAdWatchDateTime", _adCooldown);
         }
@@ -42,15 +46,10 @@ namespace GUI.GuiHandler.ADMenuHUD
             Gui.MainMenuViewController.SetActive(true);
         }
 
-        private void OnWatchButtonClick()
+        private void GetReward()
         {
-            /* TODO - watch advertisement */
-
-            if (true /* TODO - check if AD watched full */)
-            {
-                Gui.MoneyCounter.AddCoins(_reward);
-                _timer.Reset();
-            }
+            Gui.MoneyCounter.AddCoins(_reward);
+            _timer.Reset();
         }
     }
 }
