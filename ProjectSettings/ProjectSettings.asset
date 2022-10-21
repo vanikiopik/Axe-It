@@ -254,7 +254,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: G:/KeyStoreDev/user.keystore
+  AndroidKeystoreName: C:/Users/msi/Downloads/Telegram Desktop/user.keystore
   AndroidKeyaliasName: alias
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -903,11 +903,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: f41cd043-9243-4df4-a075-10480ccf5ca1
+  cloudProjectId: 32f7d716-7bcf-401e-9ec7-53928c0aed87
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Axe It
-  organizationId: gulna-games
+  organizationId: gulnagames
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

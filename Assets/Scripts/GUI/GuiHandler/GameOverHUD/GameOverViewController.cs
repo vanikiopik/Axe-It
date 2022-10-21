@@ -7,7 +7,7 @@ namespace GUI.GuiHandler.GameOverHUD
     [System.Serializable]
     public class GameOverViewController : UiController<GameOverView>
     {
-        [SerializeField] private RewardedAd _continueAd;
+        [SerializeField] private InterstitialAd _continueAd;
         [SerializeField] private InterstitialAd _adBeforeGameOver;
 
         [SerializeField] private int _gameOversAmountToAd;
@@ -18,8 +18,10 @@ namespace GUI.GuiHandler.GameOverHUD
         {
             base.Initialize(gui, onUpdate);
             _adBeforeGameOver.Initialize();
-            _continueAd.Initialize(ContinueGameReward, View.ADWatchButton.onClick);
+            _continueAd.Initialize();
 
+            View.ADWatchButton.onClick.AddListener(_continueAd.ShowAd);
+            View.ADWatchButton.onClick.AddListener(ContinueGameReward);
             View.CloseButton.onClick.AddListener(OnCloseButtonClick);
             View.ExitButton.onClick.AddListener(OnCloseButtonClick);
             

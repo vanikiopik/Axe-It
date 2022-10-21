@@ -13,16 +13,12 @@ namespace Ads
         {
             string gameId = Application.platform == RuntimePlatform.IPhonePlayer ? _iosGameId : _androidGameId;
             Advertisement.Initialize(gameId, _isTestMode, this);
+
+            Application.targetFrameRate = 300;
+            QualitySettings.vSyncCount = 0;
         }
 
-        public void OnInitializationComplete()
-        {
-            Debug.Log("Advertisement initialization is successful");
-        }
-
-        public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-        {
-            Debug.Log($"Advertisement initialization is failed: {error} - {message}");
-        }
+        public void OnInitializationComplete() {}
+        public void OnInitializationFailed(UnityAdsInitializationError error, string message) {}
     }
 }

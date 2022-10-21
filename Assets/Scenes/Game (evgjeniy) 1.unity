@@ -2742,8 +2742,8 @@ MonoBehaviour:
   <GameOverViewController>k__BackingField:
     <View>k__BackingField: {fileID: 507576255}
     _continueAd:
-      _androidAdId: Rewarded_Android
-      _iosAdId: Rewarded_iOS
+      _androidAdId: Interstitial_Android
+      _iosAdId: Interstitial_iOS
     _adBeforeGameOver:
       _androidAdId: Interstitial_Android
       _iosAdId: Interstitial_iOS
@@ -2827,8 +2827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5f927871f28af478cc1ce6024c8db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidGameId: 4982583
-  _iosGameId: 4982582
+  _androidGameId: 4982910
+  _iosGameId: 4982911
   _isTestMode: 1
 --- !u!4 &745385423
 Transform:
