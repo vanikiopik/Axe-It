@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,16 @@ public class FpsCounter : MonoBehaviour
     private int _counter;
     private float _time;
 
+    private int _min = Int32.MaxValue;
+    private int _max;
+    
+    private int _avr;
+    private int _seconds;
+
     private void Start()
     {
         _fpsCounterText = GetComponent<Text>();
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 300;
         QualitySettings.vSyncCount = 0;
     }
 
@@ -19,9 +26,17 @@ public class FpsCounter : MonoBehaviour
     {
         _counter++;
         _time += Time.deltaTime;
-        if (_time < 1.0f) return;
-        
-        _fpsCounterText.text = $"FPS: {_counter}";
-        _time = _counter = 0;
+        if (_time >= 1.0f)
+        {
+            _time--;
+            _seconds++;
+            
+            _avr = ((_seconds - 1) * _avr + _counter) / _seconds;
+            if (_counter > _max) _max = _counter;
+            if (_counter < _min) _min = _counter;
+
+            _fpsCounterText.text = $"FPS: {_counter}\nMax: {_max}\nAvr: {_avr}\nMin: {_min}";
+            _counter = 0;
+        }
     }
 }

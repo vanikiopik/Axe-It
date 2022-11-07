@@ -1,15 +1,17 @@
+using GUI.GuiHandler;
+using GUI.GuiHandler.MainMenuHUD;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace GUI
 {
-    [RequireComponent(typeof(GuiHandler))]
+    [RequireComponent(typeof(Gui))]
     public class InputHandler : MonoBehaviour, IPointerDownHandler
     {
-        private GuiHandler _gui;
+        private Gui _gui;
 
-        private void Start() => _gui = GetComponent<GuiHandler>();
+        private void Start() => _gui = GetComponent<Gui>();
 
         public void OnPointerDown(PointerEventData eventData)
         {
