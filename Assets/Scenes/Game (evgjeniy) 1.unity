@@ -2535,15 +2535,15 @@ MonoBehaviour:
         _maxScaleMultiplier: 1.25
   <MainMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 1062870547}
-    _bonusReward: 50
-    _bonusCooldown: 14400
+    _bonusReward: 80
+    _bonusCooldown: 10800
   <MoneyPanelViewController>k__BackingField:
     <View>k__BackingField: {fileID: 285370656}
     _rewardedAd:
       _androidAdId: Rewarded_Android
       _iosAdId: Rewarded_iOS
-    _reward: 80
-    _adCooldown: 10
+    _reward: 100
+    _adCooldown: 20
   <SkinMenuViewController>k__BackingField:
     <View>k__BackingField: {fileID: 1486506299}
   <PauseMenuViewController>k__BackingField:
@@ -2638,7 +2638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 4982910
   _iosGameId: 4982911
-  _isTestMode: 1
+  _isTestMode: 0
 --- !u!4 &745385423
 Transform:
   m_ObjectHideFlags: 0
@@ -4236,7 +4236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a7eba4e4e8d83dd4dad18feab02ed855, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f086a3ef8cc80b4482426f24ce2a76b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6319,7 +6319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1029940ba6b0a674d9c1d59e26ee2acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goldWoodReward: 5
+  _leftRewardBorder: 5
+  _rightRewardBorder: 9
 --- !u!95 &8803663181306750303
 Animator:
   serializedVersion: 4

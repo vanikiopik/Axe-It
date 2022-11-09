@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Battle Axe
   <Icon>k__BackingField: {fileID: 21300000, guid: fb1ea31abbaf64447a6cdcceaa416a65,
     type: 3}
-  <Price>k__BackingField: 600
+  <Price>k__BackingField: 400
   <IsBought>k__BackingField: 0
   <IsSelected>k__BackingField: 0
   <Mesh>k__BackingField: {fileID: -489752488287846591, guid: 1c6e0f26669780d42a29f9e74320ba93,
