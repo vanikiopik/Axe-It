@@ -1,6 +1,9 @@
 using GUI.GuiHandler;
+using Newtonsoft.Json.Linq;
 using Skins;
 using UnityEngine;
+using System;
+using Random = System.Random;
 
 namespace Axe
 {
@@ -10,10 +13,13 @@ namespace Axe
     [RequireComponent(typeof(Animator))]
     public class AxeEngine : MonoBehaviour
     {
+        
         public enum AxeState { Idle, HitAttack, MissAttack }
         
-        [field: Min(0)][field: SerializeField] private int _goldWoodReward;
-    
+        private int _goldWoodReward;
+        [SerializeField] private int _leftRewardBorder;
+        [SerializeField] private int _rightRewardBorder;
+
         private Gui _gui;
         private AxeGraphics _axeGraphics;
 
@@ -46,7 +52,15 @@ namespace Axe
 
         public void LoadGraphics(AxeSkin model) => _axeGraphics.Load(model);
 
-        public void GoldWoodAxed() => _gui.MoneyCounter.AddCoins(_goldWoodReward);
+        //public void GoldWoodAxed() => _gui.MoneyCounter.AddCoins(_goldWoodReward);
+
+        public void GoldWoodAxed() 
+        {
+
+            System.Random random = new Random();
+            _goldWoodReward = random.Next(_leftRewardBorder, _rightRewardBorder);
+            _gui.MoneyCounter.AddCoins(_goldWoodReward);
+        } 
 
         public void CameraShake() => CameraShaking?.Invoke();
 

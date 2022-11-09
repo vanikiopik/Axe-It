@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Ice Axe
   <Icon>k__BackingField: {fileID: 21300000, guid: f39ee33997ec9a044881af3f3571401c,
     type: 3}
-  <Price>k__BackingField: 600
+  <Price>k__BackingField: 400
   <IsBought>k__BackingField: 0
   <IsSelected>k__BackingField: 0
   <Mesh>k__BackingField: {fileID: 4439025181622901381, guid: a54ba27524eabdc4e8c8afd4aceef4de,
