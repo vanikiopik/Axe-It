@@ -36,7 +36,7 @@ namespace GUI.GuiHandler
         [field: SerializeField] public GameViewController GameViewController { get; private set; }
         [field: SerializeField] public MainMenuViewController MainMenuViewController { get; private set; }
         [field: SerializeField] public MoneyPanelViewController MoneyPanelViewController { get; private set; }
-        [field: SerializeField] public AdMenuViewController AdMenuViewController { get; private set; }
+        //[field: SerializeField] public AdMenuViewController AdMenuViewController { get; private set; }
         [field: SerializeField] public SkinMenuViewController SkinMenuViewController { get; private set; }
         [field: SerializeField] public PauseMenuViewController PauseMenuViewController { get; private set; }
         [field: SerializeField] public GameOverViewController GameOverViewController { get; private set; }
@@ -44,7 +44,7 @@ namespace GUI.GuiHandler
         private void Start()
         {
             MainMenuViewController.Initialize(this, _onUpdateEvent);
-            AdMenuViewController.Initialize(this, _onUpdateEvent);
+            //AdMenuViewController.Initialize(this, _onUpdateEvent);
             SkinMenuViewController.Initialize(this, _onUpdateEvent);
             GameViewController.Initialize(this, _onUpdateEvent);
             MoneyPanelViewController.Initialize(this, _onUpdateEvent);

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace GUI.GuiHandler.ADMenuHUD
 {
-    [Serializable]
+    /*[Serializable]
     public class AdMenuViewController : UiController<AdMenuView>
     {
         [SerializeField] private RewardedAd _rewardedAd;
@@ -51,5 +51,5 @@ namespace GUI.GuiHandler.ADMenuHUD
             Gui.MoneyCounter.AddCoins(_reward);
             _timer.Reset();
         }
-    }
+    }*/
 }
